@@ -1,0 +1,38 @@
+#!/usr/bin/python2
+# Copyright and Right of Ownership Sept. 27th, 2017 by ArchI3Chris on github.com, All Rights Reserved Worldwide
+# I use this script to update my dynamic IP address on changeip.com automatically
+# Since this is written in Python 2, you can use it with many devices and operating systems
+# In the obvious section below enter your according data (username, password, ...) between the quotation marks
+# For automation I suggest using a cronjob or the TaskManger in Windows for the script. Max. every 5 minutes
+# The script fetches the IP address of the URL in question as well as the current EXTERNAL IP address of the device it runs on
+# then compares the 2 and in case different it updates the IP address on changeip.com for the iphost URL
+# In case you have more than 1 URL, I suggest using sets. In this case please use the API documentation for further instruction
+
+import urllib2
+import socket
+
+##################################
+ipurl  = 'http://ip.dnsexit.com'		# URL to get the current external IP from
+iphost = 'ENTER URL HERE'			# the URL on ChangeIP to update the IP for
+ipusr  = 'ENTER CHANGE-IP USER HERE'		# ChangeIP username
+ippass = 'ENTER CHANGE-IP PASSWORD HERE'	# ChangeIP password
+##################################
+
+newip = urllib2.urlopen(ipurl).read().strip()
+currentip = socket.gethostbyname(iphost)
+udurl = 'https://nic.changeip.com/nic/update?u=' + ipusr + '&p=' + ippass + '&ip=' + newip + '&host=' + iphost
+
+def fw():
+	# send ip to changeip
+	response = urllib2.urlopen(udurl)
+
+try:
+	#compare current ip with new ip
+        if(currentip==newip):
+		print "ip didn't change"
+        else:
+                print "ip changed"
+		fw()
+except:
+	fw()
+        print "no comparison"
