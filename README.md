@@ -3,16 +3,18 @@ ChangeIP AutoUpdate
 
 I use this script to update my dynamic IP address on ChangeIP.com automatically. The free plan works great for me. So, all goes together 100% free.
 
-As long as you run Python 2 and the according libraries, you can use whatever device and operating system you desire. I currently run it on a single board computer.
+As long as you run Python 2 and the according libraries, you can use whatever device and operating system you desire.
 
 
 Usage
 =====
 
-You just need to enter your ChangeIP data in the according section. Meaning the URL to update the IP for, your username and your password. 
+Of course you are going to need an account at [changeip.com](https://www.changeip.com/accounts/aff.php?aff=3248) and you are going to have to create the according domains in the DNS Manager (free options available).
+
+To use this Update script just need to enter your ChangeIP data in the according section. Meaning the URL to update the IP for, your username and your password. 
 
 Since the username and password are in the file in clear text, make sure to use adequate security settings or if necessary add the according modifications. Also, before you run it, don't forget to make 
-sure your permissions are set properly (chmod +x changeip). Once done just run the script with Python 2.
+sure your permissions are set properly (chmod +x changeip). Once done just run the script with Python 2. (Note: by default the script uses a hashbang for Linux-based systems. Using another software system, you might want to remove the hashbang in the first line and call the script with Python2 directly. The changeip file is just a Python2 script).
 
 For automation I suggest using a cron job or say the TaskManager in Windows. Due to the IP lifetime, ChangeIP suggests to run the cron job at a max of every 5 minutes.
 
